@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+#include <map>
+#include<unordered_map>
+#include <algorithm>
+#include <string>
+#include <set>
+#include<list>
+using namespace std;
+
+
+struct graph
+{
+    unordered_map< int ,list<int> > adj;
+    
+    void addedge(int u, int v, bool direction)
+    {
+        adj[u].push_back(v);
+
+        if(direction==0)
+        {
+            adj[v].push_back(u);
+        }
+    }
+
+    void printdata()
+    {
+        for(auto element: adj)
+        {
+            cout<<element.first<<"->";
+            for(auto i:element.second)
+            {
+                cout<<i<<",";
+            }
+
+            cout<<endl;
+        }
+    }
+    
+    
+};
+
+int main()
+{
+    int n,m;
+    cout<<"no of node :";
+    cin>>n;
+    cout<<"no of side :";
+    cin>>m;
+
+    graph g;
+    
+    for(int i=0;i<m;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+
+        g.addedge(u,v,0);
+    }
+
+    g.printdata();
+}
